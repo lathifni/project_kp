@@ -52,4 +52,13 @@ controllers.readProgram = async (req, res) => {
     })
 }
 
+controllers.listProgram = async (req, res) => {
+    const data = await program.findAll({})
+    .then(data => {
+        res.send(data)
+    }).catch(err => {
+        res.send(err)
+    })
+}
+
 module.exports = {controllers}
