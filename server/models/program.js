@@ -25,13 +25,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
-    rek_p4: {
+    rek_P4: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: true
     },
-    tahun: DataTypes.INTEGER,
-    nama: DataTypes.STRING,
+    tahun: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     createdAt: {
       type: DataTypes.DATEONLY,
       defaultValue: sequelize.literal('NOW()')

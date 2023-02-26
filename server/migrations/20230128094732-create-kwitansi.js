@@ -3,14 +3,14 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('kwitansis', {
-      id_LB: {
+      rek_P5: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'no action',
         references:{
-          model: 'laporan_bulanans',
+          model: 'pengeluarans',
           key: 'id',
-          as: 'id_LB'
+          as: 'rek_P5'
         }
       },
       id: {

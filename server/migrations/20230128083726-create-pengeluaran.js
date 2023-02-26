@@ -36,6 +36,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      triwulan1: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      triwulan2: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      triwulan3: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      triwulan4: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATEONLY,

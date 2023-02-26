@@ -31,7 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: true
     },
-    nama: DataTypes.STRING,
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     NIP: DataTypes.STRING,
     createdAt: {
       type: DataTypes.DATEONLY,

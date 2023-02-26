@@ -20,9 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     NIP: {
       type: DataTypes.STRING,
       primaryKey: true,
-      allowNull: true
+      allowNull: false
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     createdAt: {
       type: DataTypes.DATEONLY,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP')

@@ -27,12 +27,24 @@ module.exports = (sequelize, DataTypes) => {
     NIP: {
       type: DataTypes.STRING,
       primaryKey: true,
-      allowNull: true
+      allowNull: false
     },
-    nama: DataTypes.STRING,
-    TTL: DataTypes.STRING,
-    alamat: DataTypes.STRING,
-    telp: DataTypes.STRING,
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    TTL: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    alamat: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    telp: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     createdAt: {
       type: DataTypes.DATEONLY,
       allowNull:true,

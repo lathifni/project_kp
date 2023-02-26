@@ -12,9 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       pengeluaran.belongsTo(models.sub_kegiatan, {
-        foreignKey: 'id'
+        foreignKey: 'rek_PKSk4'
       }),
-      pengeluaran.hasMany(models.laporan_bulanan, {
+      // pengeluaran.hasMany(models.laporan_bulanan, {
+      //   foreignKey: 'rek_P5'
+      // })
+      pengeluaran.hasMany(models.kwitansi, {
         foreignKey: 'rek_P5'
       })
     }
@@ -31,9 +34,27 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: true
     },
-    tahun: DataTypes.INTEGER,
-    nama: DataTypes.STRING,
+    tahun: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     anggaran: {
+      type: DataTypes.INTEGER
+    },
+    triwulan1: {
+      type: DataTypes.INTEGER
+    },
+    triwulan2: {
+      type: DataTypes.INTEGER
+    },
+    triwulan3: {
+      type: DataTypes.INTEGER
+    },
+    triwulan4: {
       type: DataTypes.INTEGER
     },
     createdAt: {
