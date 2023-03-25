@@ -3,9 +3,15 @@ import { Navigation } from '../Components/Navigation'
 import { TableAkun } from '../Components/TableAkun'
 
 export const Akun = () => {
+  // return (
+  //   <div>
+  //     <NavigationAdmin/>
+  //     <TableAkun/>
+  //   </div>
+  // )
   return (
     <div>
-      <Navigation/>
+      <Navigation />
       <TableAkun/>
     </div>
   )

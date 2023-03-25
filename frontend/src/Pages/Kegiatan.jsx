@@ -5,8 +5,8 @@ import { Navigation } from '../Components/Navigation'
 export const Kegiatan = () => {
   return (
     <div>
-        <Navigation/>
-        <DetailKegiatan/>
+      <Navigation />
+      <DetailKegiatan />
     </div>
   )
 }

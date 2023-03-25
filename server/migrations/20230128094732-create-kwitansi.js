@@ -24,6 +24,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      bulan: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       total: {
         allowNull: false,
         type: Sequelize.INTEGER

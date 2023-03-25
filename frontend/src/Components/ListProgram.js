@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const API_HOST = "http://127.0.0.1:8000"
-const LISTPROGRAM_API_URL = `${API_HOST}/users/listProgram`
+const LISTPROGRAM_API_URL = `${API_HOST}/list/semuaProgram`
 
 const ListProgram = () => {
   const [data, setdata] = useState([])

@@ -15,6 +15,13 @@ module.exports = {
        TTL: 'Bekasi, 30 Januari 1979',
        alamat: 'Jln. Merdeka No.3A',
        telp: '081122334455'
+    },
+    {
+      NIP: '111',
+       nama: 'User biasa',
+       TTL: 'Bekasi, 30 Januari 1979',
+       alamat: 'Jln. Merdeka No.3A',
+       telp: '081122334455'
     }]);
   },
 

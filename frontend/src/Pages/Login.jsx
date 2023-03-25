@@ -1,8 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Button, Row, Container, Card, Form, FloatingLabel} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
+  const [NIP, setNIP] = useState("")
+  const [password, setPassword] = useState('')
+  const [validated, setValidated] = useState(false)
+  const navigate = useNavigate()
+  // const history = useHistory()
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      setValidated(false)
+    }
+    setValidated(true)
+    if (validated === true && NIP !== undefined && password !== '') {
+      // axios.post("http://127.0.0.1:8000/login", {
+      //   NIP,
+      //   password
+      // }).then(function (res) {
+      //   sessionStorage.setItem('token', res.data.token)
+      //   sessionStorage.setItem('role', res.data.role)
+      //   sessionStorage.setItem('nama', res.data.nama)
+      //   sessionStorage.setItem('NIP', res.data.NIP)
+      //   console.log(sessionStorage.getItem('nama'))
+      //   navigate('/home')
+      // }).catch((error) => {
+      //   window.alert(error)
+      // })
+      axios.post('http://127.0.0.1:8000/login', {
+        NIP,
+        password
+      }).then(function (res) {
+        console.log(res)
+        if (res.status === 200){
+          sessionStorage.setItem('token', res.data.token)
+          sessionStorage.setItem('role', res.data.role)
+          sessionStorage.setItem('nama', res.data.nama)
+          sessionStorage.setItem('NIP', res.data.NIP)
+          console.log(sessionStorage.getItem('nama'))
+          navigate('/home')
+        } else {
+          window.alert('Masukkan NIP dan password yang benar')
+        }
+      }).catch((err) => {
+          window.alert('Masukkan NIP dan password yang benar')
+      })
+    }
+  }
   return (
     // <Section class="h-100 gradient-form" style="background-color: #eee;">
     //   <div class="container py-5 h-100">
@@ -64,8 +114,9 @@ export const Login = () => {
                   <Card.Title className='displayLarge' style={{ textAlign: "center" }}>SELAMAT DATANG</Card.Title>
                   <div className="mb-3 mt-md-4">
                     <h2 className="fw-bold mb-2 text-uppercase" style={{ textAlign: "center" }}>SI Kontrol Keuangan Biro Organisasi Setda Prov Sumbar</h2>
+                    <p></p>
                     <div className="mb-3"><br />
-                      <Form>
+                      <Form onSubmit={handleSubmit}>
                         {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>NIP</Form.Label>
                         <Form.Control type="number" placeholder="NIP" />
@@ -83,20 +134,14 @@ export const Login = () => {
                           label="Nomor Induk Pegawai"
                           className="mb-3"
                         >
-                          <Form.Control type="number" placeholder="name@example.com" required/>
+                          <Form.Control type="number" onChange={(e) => setNIP(e.target.value)} required/>
                         </FloatingLabel>
 
                         <FloatingLabel controlId="floatingPassword" label="Password">
-                          <Form.Control type="password" placeholder="Password" required/>
+                          <Form.Control type="password" onChange={(e) => setPassword(e.target.value)}required/>
                         </FloatingLabel>
-
-                        <Form.Group
-                          className="mb-3"
-                          controlId="formBasicCheckbox"
-                        ><br />
-                        </Form.Group>
                         <div className="d-grid">
-                          <Button variant="primary" type="submit" href='/home'>Masuk</Button>
+                          <Button variant="primary" type="button" onClick={handleSubmit}>Masuk</Button>
                         </div>
                       </Form>
                     </div>

@@ -16,7 +16,7 @@ export const Tambah = () => {
   
   useEffect(() => {
     const getSubKegiatan = async () => {
-      const res = await axios.get("http://127.0.0.1:8000/users/listSubKegiatan")
+      const res = await axios.get("http://127.0.0.1:8000/list/semualistSubKegiatan")
       setListSubKegiatan( res.data)
     }
     getSubKegiatan()
@@ -24,7 +24,7 @@ export const Tambah = () => {
   
   useEffect(() => {
     const getPengeluaran = async () => {
-      const res = await axios.get(`http://127.0.0.1:8000/users/Pengeluaran/${idSK}`)
+      const res = await axios.get(`http://127.0.0.1:8000/list/semualistPengeluaran/${idSK}`)
       setListPengeluaran( res.data)
     }
     getPengeluaran()
@@ -36,14 +36,16 @@ export const Tambah = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      setValidated(false)
     }
-    axios.post("http://127.0.0.1:8000/users/post", {
+    setValidated(true)
+    if (validated === true && idP!==undefined && nama!=='' && total!==''){
+      console.log(nama)
+      axios.post("http://127.0.0.1:8000/tambah/tambahNota", {
       idP,
       nama,
       total
     })
-    setValidated(true)
-    if (form.checkValidity() === true){
       navigate('/home')
     }
   }
@@ -77,7 +79,7 @@ export const Tambah = () => {
                         <Form.Select onChange={(e) => handleSP(e)} required>
                           <option>Silahkan pilih Sub Kegiatan</option>
                           {listSubKegiatan.map((SK) => (
-                            <option value={SK.id}>{SK.nama}</option>
+                            <option key={SK.id} value={SK.id}>{SK.nama}</option>
                           ))}
                         </Form.Select>
                         <Form.Control.Feedback>Memilih id {idSK}</Form.Control.Feedback>
@@ -87,7 +89,7 @@ export const Tambah = () => {
                         <Form.Select onChange={(e) => handleP(e)} name='id_P5' required>
                           <option>Silahkan pilih Pengeluaran</option>
                           {listPengeluaran.map((P) => (
-                            <option value={P.id}>{P.nama}</option>
+                            <option key={P.id} value={P.id}>{P.nama}</option>
                           ))}
                         </Form.Select>
                         <Form.Control.Feedback>Memilih id {idP}</Form.Control.Feedback>
@@ -115,7 +117,7 @@ export const Tambah = () => {
                         />
                       </Form.Group>
                       <div >
-                        <Button variant="primary" type="button" onClick={handleSubmit}>Simpan</Button>
+                        <Button className="mr-3" variant="primary" type="button" onClick={handleSubmit}>Simpan</Button>
                         <Button variant="danger" type="submit" href="/home">Batal</Button>
                       </div>
                     </Form>

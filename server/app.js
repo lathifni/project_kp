@@ -7,17 +7,27 @@ var logger = require('morgan');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var tambahRouter = require('./routes/tambah')
+var listRouter = require('./routes/list')
+var editRouter = require('./routes/edit')
+var authRouter = require('./routes/auth')
+var hapusRouter = require('./routes/hapus')
 var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cors())
+app.use(cors({ credentials: true, origin:'*'}))
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tambah', tambahRouter)
+app.use('/list', listRouter)
+app.use('/edit', editRouter)
+app.use('/auth', authRouter)
+app.use('/hapus', hapusRouter)
 
 app.use(function(req, res, next) {
   next(createError(404));
