@@ -42,9 +42,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    anggaran: {
-      type: DataTypes.INTEGER
-    },
     triwulan1: {
       type: DataTypes.INTEGER
     },

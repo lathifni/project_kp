@@ -32,10 +32,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      anggaran: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       triwulan1: {
         allowNull: true,
         type: Sequelize.INTEGER
