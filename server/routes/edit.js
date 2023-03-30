@@ -6,6 +6,7 @@ router.post('/editProgram/:id', edit.controllers.editProgram)
 router.post('/editKegiatan/:id', edit.controllers.editKegiatan)
 router.post('/editSubKegiatan/:id', edit.controllers.editSubKegiatan)
 router.post('/editPengeluaran/:id', edit.controllers.editPengeluaran)
-router.get('/editNota/:id', edit.controllers.editNota)
+router.get('/editNotaKonfirmasi/:id', edit.controllers.editNotaKonfirmasi)
+router.get('/editNotaDibayarkan/:id', edit.controllers.editNotaDibayarkan)
 
 module.exports = router;

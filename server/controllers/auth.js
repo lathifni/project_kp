@@ -1,6 +1,4 @@
-const {program, kegiatan, kwitansi,
-    laporan_bulanan, pengeluaran, staff, akun,
-    sub_kegiatan} = require('../models')
+const {staff, akun,} = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -16,15 +14,6 @@ controllers.login = async (req, res) => {
             }]
         })
         if (!cekAkun) return res.status(400).json({msg: "Gagal Login1"})
-        // let password = "user"
-        // const salt = await bcrypt.genSalt(10);
-        // const hashPassword = await bcrypt.hash(password, salt);
-        // await akun.update({
-        //     password: hashPassword
-        // },{ 
-        //     where: { NIP : req.body.NIP}
-        // })
-
         const cocok = bcrypt.compareSync(req.body.password, cekAkun.password)
         if (!cocok) return res.status(400).json({msg: "Gagal Login2"})
 
@@ -55,25 +44,6 @@ controllers.logout = async (req, res) => {
 
 controllers.changePassword = async (req, res) => {
     try {
-        // if (!sessionStorage.getItem('NIP')) return res.json({msg: 'Mohon Login terlebih dahulu'})
-        // const data = await akun.findOne({
-        //     where: { NIP: sessionStorage.getItem('NIP')}
-        // })
-
-        // const cocok = bcrypt.compareSync(req.body.password, data.password)
-        // if (!cocok) return res.status(400).json({msg: "Password lama salah"})
-
-        // if (req.body.passBaru !== req.body.passBaruConf) return res.status(400).json({msg: "Password baru tidak sama"})
-
-        // let password = req.body.passBaru
-        // const salt = await bcrypt.genSalt(10);
-        // const hashPassword = await bcrypt.hash(password, salt);
-        // await akun.update({
-        //     password: hashPassword
-        // }, {
-        //     where : { NIP: sessionStorage.getItem('NIP') }
-        // })
-        //
         const data = await akun.findOne({
             where : { NIP: req.body.NIP}
         })

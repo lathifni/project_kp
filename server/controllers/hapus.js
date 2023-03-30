@@ -1,6 +1,4 @@
-const {program, kegiatan, kwitansi,
-    laporan_bulanan, pengeluaran, staff, akun,
-    sub_kegiatan} = require('../models')
+const {kwitansi} = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
 const controllers ={}

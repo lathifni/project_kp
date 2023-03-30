@@ -32,15 +32,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      NIP: {
-        type: Sequelize.STRING,
-        onDelete: 'no action',
-        references:{
-          model: 'staffs',
-          key: 'NIP',
-          as: 'id'
-        }
-      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATEONLY,

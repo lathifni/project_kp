@@ -6,17 +6,17 @@ module.exports = {
     await queryInterface.bulkInsert('sub_kegiatans', [{
       rek_PK4: 5,
       rek_PKSk4: '4.01.01.1.06.04.',
-      tahun: 2022,
+      tahun: 2023,
       nama: 'Penyediaan Bahan Logistik Kantor'
     }, {
       rek_PK4: 5,
       rek_PKSk4: '4.01.01.1.06.05.',
-      tahun: 2022,
+      tahun: 2023,
       nama: 'Penyediaan Barang Cetakan dan Penggandaan'
     }, {
       rek_PK4: 5,
       rek_PKSk4: '4.01.01.1.06.09.',
-      tahun: 2022,
+      tahun: 2023,
       nama: 'Penyelenggaraan Rapat Koordinasi dan Konsultasi SKPD'
     }]);
   },

@@ -5,11 +5,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('programs', [{
       rek_P4: '4.01.01.',
-      tahun: 2022,
+      tahun: 2023,
       nama: 'PROGRAM PENUNJANG URUSAN PEMERINTAHAN DAERAH PROVINSI'
     }, {
       rek_P4: '4.01.02.',
-      tahun: 2022,
+      tahun: 2023,
       nama: 'PROGRAM PENATAAN ORGANISASI'
     }]);
   },

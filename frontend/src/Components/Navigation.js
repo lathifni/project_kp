@@ -99,6 +99,7 @@ export const Navigation = () => {
                             <Nav.Link href="/nota">Nota </Nav.Link>
                             <Nav.Link href="/tambah">Tambah Nota </Nav.Link>
                             <Nav.Link href="/konfirmasiNota">Konfirmasi Nota </Nav.Link>
+                            <Nav.Link href="/notaDibayarkan">Nota Dibayarkan </Nav.Link>
                         </Nav>
                         <Nav>
                             <Nav.Link eventKey={2} href="/changePassword">Ganti Password <i className="bi bi-arrow-clockwise"></i></Nav.Link>

@@ -24,12 +24,13 @@ export const Tambah = () => {
   
   useEffect(() => {
     const getPengeluaran = async () => {
-      const res = await axios.get(`http://127.0.0.1:8000/list/semualistPengeluaran/${idSK}`)
-      setListPengeluaran( res.data)
+      if (idSK !== undefined){
+        const res = await axios.get(`http://127.0.0.1:8000/list/semualistPengeluaran/${idSK}`)
+        setListPengeluaran(res.data)
+      }
     }
     getPengeluaran()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listPengeluaran])
+  }, [idSK ,listPengeluaran])
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -39,18 +40,24 @@ export const Tambah = () => {
       setValidated(false)
     }
     setValidated(true)
-    if (validated === true && idP!==undefined && nama!=='' && total!==''){
-      console.log(nama)
+    if (validated === true && idP !== undefined && nama !== '' && total !== '') {
       axios.post("http://127.0.0.1:8000/tambah/tambahNota", {
-      idP,
-      nama,
-      total
-    })
-      navigate('/home')
+        idP,
+        nama,
+        total
+      }).then(function (res) {
+        console.log(res)
+        if (res.status === 200 && res.data.ket === 'gagal') {
+          window.alert(`${res.data.msg}`)
+        } else {
+          window.alert('Berhasil menambahkan nota')
+          navigate('/home')
+        }
+      })
     }
   }
 
-  const handleSP=(e)=>{
+  const handleSK=(e)=>{
     const getId= e.target.value;
     setIdSK(getId);
     e.preventDefault();
@@ -76,7 +83,7 @@ export const Tambah = () => {
                     <Form noValidate validated={validated} onSubmit={handleSubmit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Sub Kegiatan </Form.Label>
-                        <Form.Select onChange={(e) => handleSP(e)} required>
+                        <Form.Select onChange={(e) => handleSK(e)} required>
                           <option>Silahkan pilih Sub Kegiatan</option>
                           {listSubKegiatan.map((SK) => (
                             <option key={SK.id} value={SK.id}>{SK.nama}</option>

@@ -17,6 +17,7 @@ import { EditSubKegiatan } from "./Pages/EditSubKegiatan";
 import { EditPengeluaran } from "./Pages/EditPengeluaran";
 import { AddAkun } from "./Pages/AddAkun";
 import { Nota } from "./Pages/Nota";
+import { NotaDibayarkan } from "./Pages/NotaDibayarkan";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/akun' element={<Akun />} />
         <Route path='/nota' element={<Nota />} />
         <Route path='/konfirmasiNota' element={<KonfirmasiNota />} />
+        <Route path='/notaDibayarkan' element={<NotaDibayarkan />} />
         <Route path='/changePassword' element={<ChangePassword />} />
         <Route path='/tambahProgram' element={<AddProgram />} />
         <Route path='/tambahKegiatan/:rek_P4' element={<AddKegiatan />} />

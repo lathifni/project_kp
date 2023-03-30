@@ -1,21 +1,13 @@
 import React from 'react'
+import axios from 'axios';
 import Table from 'react-bootstrap/Table';
-import axios from 'axios'
 
-export const TableKonfirmasiNota = ({ item }) => {
+export const TableNotaDibayarkan = ({ item }) => {
 
     const accNota = (item) => {
-        const response = window.confirm("Konfirmasi Nota?");
+        const response = window.confirm("Nota Telah Dibayarkan?");
         if (response === true) {
-            axios.get(`http://127.0.0.1:8000/edit/editNotaKonfirmasi/${item}`)
-            window.location.reload()
-        }
-    }
-
-    const rejNota = (item) => {
-        const response = window.confirm("Yakin ingin menghapus nota?");
-        if (response === true) {
-            axios.get(`http://127.0.0.1:8000/hapus/hapusNota/${item}`)
+            axios.get(`http://127.0.0.1:8000/edit/editNotaDibayarkan/${item}`)
             window.location.reload()
         }
     }
@@ -56,8 +48,7 @@ export const TableKonfirmasiNota = ({ item }) => {
                                             <td>Rp{detail.total}</td>
                                             <td>{detail.NIP}</td>
                                             <td>
-                                                <button onClick={() => accNota(detail.id)}><i class="bi bi-check-lg"></i></button><br />
-                                                <button onClick={() => rejNota(detail.id)}><i class="bi bi-trash3"></i></button>
+                                                <button onClick={() => accNota(detail.id)}><i class="bi bi-cash-coin"></i></button><br />
                                             </td>
                                             {/* <td>Rp{detail.triwulan4}</td> */}
                                         </tr>

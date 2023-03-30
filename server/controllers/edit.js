@@ -1,5 +1,4 @@
-const {program, kegiatan, kwitansi,
-    laporan_bulanan, pengeluaran, staff, akun,
+const {program, kegiatan, kwitansi, pengeluaran,
     sub_kegiatan} = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
@@ -65,10 +64,22 @@ controllers.editPengeluaran = async (req, res) => {
     }
 }
 
-controllers.editNota = async (req, res) => {
+controllers.editNotaKonfirmasi = async (req, res) => {
     try {
         await kwitansi.update({
             status  : 1
+        }, {
+            where   : { id: req.params.id}
+        })
+    } catch (err) {
+        res.send(err)
+    }
+}
+
+controllers.editNotaDibayarkan = async (req, res) => {
+    try {
+        await kwitansi.update({
+            status  : 2
         }, {
             where   : { id: req.params.id}
         })

@@ -1,4 +1,4 @@
-const {program, kegiatan, kwitansi,
+const {program, kegiatan, nota,
         laporan_bulanan, pengeluaran, staff, akun,
         sub_kegiatan} = require('../models')
 var Sequelize = require('sequelize');
@@ -7,11 +7,11 @@ const controllers ={}
 
 controllers.readProgram = async (req, res) => {
     // res.render('index', {title: 'Halo ini adalah read program'})
-    // attributes: [[Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
+    // attributes: [[Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
 
     // const data = await laporan_bulanan.findAll({
-        // attributes: ['bulan', 'anggaran', [Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
-    //     include: [{model: kwitansi}],
+        // attributes: ['bulan', 'anggaran', [Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
+    //     include: [{model: nota}],
     //     group: ['id_LB']})
     //     .then(data => {
     //     res.send(data)
@@ -22,7 +22,7 @@ controllers.readProgram = async (req, res) => {
     // const data = await pengeluaran.findAll({
     //     include: [{
     //         model: laporan_bulanan,
-    //         include: [kwitansi]
+    //         include: [nota]
     //     }]})
     //     .then(data => {
     //     res.send(data)
@@ -38,7 +38,7 @@ controllers.readProgram = async (req, res) => {
                 include: [{
                     model: pengeluaran,
                     include: [{
-                        model: kwitansi
+                        model: nota
                     }]
                 }]
             }]
@@ -121,7 +121,7 @@ controllers.listKegiatan = async (req, res) => {
             include: [{
                 model: pengeluaran,
                 // include: [{
-                //     model: kwitansi
+                //     model: nota
                 // }],
             }]
         }],
@@ -132,9 +132,9 @@ controllers.listKegiatan = async (req, res) => {
     })
 
     // const data = await laporan_bulanan.findAll({
-    //     attributes: [[Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
+    //     attributes: [[Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
     //     include: [{
-    //         model: kwitansi
+    //         model: nota
     //     }],
     //     group: ['id_LB']})
     //     .then(data => {

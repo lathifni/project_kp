@@ -1,6 +1,5 @@
-const {program, kegiatan, kwitansi,
-    laporan_bulanan, pengeluaran, staff, akun,
-    sub_kegiatan} = require('../models')
+const {program, kegiatan, kwitansi, 
+    pengeluaran, staff, akun, sub_kegiatan} = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
 const controllers ={}
@@ -72,11 +71,9 @@ controllers.listKonfirmasiNota = async (req, res) => {
     })
 }
 
-controllers.listSemuaNota = async (req, res) => {
+controllers.listNotaDibayarkan = async (req, res) => {
     const data = await sub_kegiatan.findAll({
-        where: { '$pengeluarans.kwitansis.status$': {
-            [Sequelize.Op.or]: [0,1]} 
-        },
+        where: { '$pengeluarans.kwitansis.status$': 1},
         attributes: ['nama', 'rek_PKSk4'],
         include: [{
             model: pengeluaran,
@@ -92,22 +89,34 @@ controllers.listSemuaNota = async (req, res) => {
     })
 }
 
+controllers.listSemuaNota = async (req, res) => {
+    const data = await sub_kegiatan.findAll({
+        where: { '$pengeluarans.kwitansis.status$': {
+            [Sequelize.Op.or]: [0,1,2]} 
+        },
+        attributes: ['nama', 'rek_PKSk4'],
+        include: [{
+            model: pengeluaran,
+            attributes: ['nama', 'rek_P5'],
+            include: [{
+                model: kwitansi
+            }]
+        }]
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+        res.send(err)
+    })
+}
+
 controllers.listSubKegiatan = async (req, res) => {
     var date = new Date()
-    var year = date.getFullYear
-
     const data = await sub_kegiatan.findAll({
-        // where: {
-        //     tahun: 2022
-        // },
-        // include: [{
-        //     model: sub_kegiatan,
-        //     attributes: ['id', 'rek_PK4', 'nama']
-        // }]
-        include:[{
+        include: [{
             model: kegiatan,
             where: {
-                tahun: 2022
+                tahun: date.getFullYear()
             }
         }]
     }).then(data => {
@@ -159,17 +168,15 @@ controllers.listsemuaProgram = async (req, res) => {
     // }).catch(err => {
     //     res.send(err)
     // })
-
+    const date = new Date()
     const data = await program.findAll({
+        where: { tahun:  date.getFullYear()},
         include: [{
             model: kegiatan,
             include: [{
                 model: sub_kegiatan,
                 include: [{
-                    model: pengeluaran,
-                    include: [{
-                        model: kwitansi
-                    }]
+                    model: pengeluaran
                 }]
             }]
         }]
@@ -177,14 +184,15 @@ controllers.listsemuaProgram = async (req, res) => {
         .then(data => {
             res.send(data)
         }).catch(err => {
+            console.log(err)
             res.send(err)
         })
 }
 
 controllers.listSemuaPengeluaran = async (req, res) => {
-    const tahun = 2022
+    const date = new Date()
     const data = await pengeluaran.findAll({
-        where: { '$sub_kegiatan.kegiatan.program.tahun$': tahun },
+        where: { '$sub_kegiatan.kegiatan.program.tahun$': date.getFullYear() },
         include: [{
             model: sub_kegiatan,
             attributes: [],

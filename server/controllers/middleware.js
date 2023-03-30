@@ -8,7 +8,6 @@ controllers.verifyToken = (req, res, next) => {
             res.json("Tidak ada token")
         const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
         const role = payload.role
-        // const nama = payload.nama
         const NIP = payload.NIP
         next()
         } catch (err) {
