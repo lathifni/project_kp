@@ -1,8 +1,8 @@
-const {staff, akun,} = require('../models')
+const { staff, akun } = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const controllers ={}
 
 controllers.login = async (req, res) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Col, Button, Row, Container, Card, Form, FloatingLabel} from "react-bootstrap";
+import { Col, Button, Row, Container, Card, Form, FloatingLabel } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -104,14 +104,24 @@ export const Login = () => {
     //   </div>
     // </Section>
     <>
-      <div>
-        <Container>
+      <div >
+        <Container >
           <Row className="vh-100 d-flex justify-content-center align-items-center">
             <Col md={8} lg={6} xs={12}>
               <div className="border border-3 border-primary"></div>
               <Card className="shadow">
                 <Card.Body>
                   <Card.Title className='displayLarge' style={{ textAlign: "center" }}>SELAMAT DATANG</Card.Title>
+                  {/* <img src='./logoSumbar.png' alt="Sumbar"  width={175} height={30} /> */}
+                  {/* <Image src='./logoSumbar.png' alt="Sumbar" width={175} height={30} className="align-items-center" /> */}
+                  <Col sm={2} className="m-auto">
+                    <img
+                      className="d-block mx-auto img-fluid"
+                      src='./logoSumbar.png'
+                      alt="Sumbar"
+                      width={175} height={30}
+                    ></img>
+                  </Col>
                   <div className="mb-3 mt-md-4">
                     <h2 className="fw-bold mb-2 text-uppercase" style={{ textAlign: "center" }}>SI Kontrol Keuangan Biro Organisasi Setda Prov Sumbar</h2>
                     <p></p>

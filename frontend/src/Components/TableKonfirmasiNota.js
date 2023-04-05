@@ -49,7 +49,7 @@ export const TableKonfirmasiNota = ({ item }) => {
                                         <th>NIP</th>
                                         <th>Aksi</th>
                                     </tr>
-                                    {p.kwitansis.map((detail) => (
+                                    {p.notas.map((detail) => (
                                         <tr>
                                             <td>{detail.bulan}</td>
                                             <td>{detail.nama}</td>

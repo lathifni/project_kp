@@ -2,14 +2,13 @@
 const {
   Model
 } = require('sequelize');
-const sub_kegiatan = require('./sub_kegiatan');
 module.exports = (sequelize, DataTypes) => {
   class staff extends Model {
     static associate(models) {
       staff.hasOne(models.akun, {
         foreignKey: 'NIP'
       }),
-      staff.hasMany(models.kwitansi, {
+      staff.hasMany(models.notas, {
         foreignKey: 'NIP'
       })
     }

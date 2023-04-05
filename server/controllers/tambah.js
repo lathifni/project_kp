@@ -1,4 +1,4 @@
-const {program, kegiatan, kwitansi,
+const {program, kegiatan, notas,
     pengeluaran, staff, akun,
     sub_kegiatan} = require('../models')
 var Sequelize = require('sequelize');
@@ -115,7 +115,7 @@ controllers.nota = async (req, res) => {
     try {
         if (bulan > 0 && bulan <= 3) {
             batasTriwulan = dataTriwulan.dataValues.triwulan1
-            jumlahTriwulan = await kwitansi.findOne({
+            jumlahTriwulan = await notas.findOne({
                 where: { bulan: { [Sequelize.Op.or]: [1, 2, 3] } },
                 include: [{
                     model: pengeluaran,
@@ -140,7 +140,7 @@ controllers.nota = async (req, res) => {
             // jumlahTriwulan = await nota.findAll({
             //     where: { bulan: { [Sequelize.Op.or]: [4, 5, 6] } }
             // })
-            jumlahTriwulan = await kwitansi.findOne({
+            jumlahTriwulan = await notas.findOne({
                 where: { bulan: { [Sequelize.Op.or]: [4, 5, 6] } },
                 include: [{
                     model: pengeluaran,
@@ -192,7 +192,7 @@ controllers.nota = async (req, res) => {
             // jumlahTriwulan = await nota.findAll({
             //     where: { bulan: { [Sequelize.Op.or]: [10, 11, 12] } }
             // })
-            jumlahTriwulan = await kwitansi.findOne({
+            jumlahTriwulan = await notas.findOne({
                 where: { bulan: { [Sequelize.Op.or]: [10, 11, 12] } },
                 include: [{
                     model: pengeluaran,
@@ -223,14 +223,14 @@ controllers.nota = async (req, res) => {
             res.status(200).json({ ket: 'gagal', msg: `Jumlah penambahan maksimum triwulan ini Rp${sisa}` })
         } else {
             console.log("Oke masih ada sisa nya")
-            await kwitansi.create({
+            await notas.create({
                 rek_P5: body.idP,
                 tahun: 2022,
-                bulan: 1,
+                bulan: bulan,
                 total: body.total,
                 nama: body.nama,
                 status: 0,
-                NIP: '0123456789'
+                NIP: body.NIP
             })
             res.status(200).json({msg: 'berhasil'})
         }

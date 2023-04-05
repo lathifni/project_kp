@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       pengeluaran.belongsTo(models.sub_kegiatan, {
         foreignKey: 'rek_PKSk4'
       }),
-      pengeluaran.hasMany(models.kwitansi, {
+      pengeluaran.hasMany(models.notas, {
         foreignKey: 'rek_P5'
       })
     }

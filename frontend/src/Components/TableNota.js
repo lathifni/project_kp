@@ -30,7 +30,7 @@ export const TableNota = ({ item, index }) => {
                                         <th>Total</th>
                                         <th>NIP</th>
                                     </tr>
-                                    {p.kwitansis.map((detail) => (
+                                    {p.notas.map((detail) => (
                                         <tr>
                                             <td>{detail.bulan}</td>
                                             <td>{detail.nama}</td>

@@ -1,4 +1,4 @@
-const {program, kegiatan, kwitansi, 
+const {program, kegiatan, notas, 
     pengeluaran, staff, akun, sub_kegiatan} = require('../models')
 var Sequelize = require('sequelize');
 const bcrypt = require('bcrypt')
@@ -55,13 +55,13 @@ controllers.getSinglePengeluaran = async (req, res) => {
 
 controllers.listKonfirmasiNota = async (req, res) => {
     const data = await sub_kegiatan.findAll({
-        where: { '$pengeluarans.kwitansis.status$': 0},
+        where: { '$pengeluarans.notas.status$': 0},
         attributes: ['nama', 'rek_PKSk4'],
         include: [{
             model: pengeluaran,
             attributes: ['nama', 'rek_P5'],
             include: [{
-                model: kwitansi
+                model: notas
             }]
         }]
     }).then(data => {
@@ -73,13 +73,13 @@ controllers.listKonfirmasiNota = async (req, res) => {
 
 controllers.listNotaDibayarkan = async (req, res) => {
     const data = await sub_kegiatan.findAll({
-        where: { '$pengeluarans.kwitansis.status$': 1},
+        where: { '$pengeluarans.notas.status$': 1},
         attributes: ['nama', 'rek_PKSk4'],
         include: [{
             model: pengeluaran,
             attributes: ['nama', 'rek_P5'],
             include: [{
-                model: kwitansi
+                model: notas
             }]
         }]
     }).then(data => {
@@ -91,7 +91,7 @@ controllers.listNotaDibayarkan = async (req, res) => {
 
 controllers.listSemuaNota = async (req, res) => {
     const data = await sub_kegiatan.findAll({
-        where: { '$pengeluarans.kwitansis.status$': {
+        where: { '$pengeluarans.notas.status$': {
             [Sequelize.Op.or]: [0,1,2]} 
         },
         attributes: ['nama', 'rek_PKSk4'],
@@ -99,7 +99,7 @@ controllers.listSemuaNota = async (req, res) => {
             model: pengeluaran,
             attributes: ['nama', 'rek_P5'],
             include: [{
-                model: kwitansi
+                model: notas
             }]
         }]
     }).then(data => {
@@ -146,11 +146,11 @@ controllers.listPengeluaran = async (req, res) => {
 
 controllers.listsemuaProgram = async (req, res) => {
     // res.render('index', {title: 'Halo ini adalah read program'})
-    // attributes: [[Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
+    // attributes: [[Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
 
     // const data = await laporan_bulanan.findAll({
-        // attributes: ['bulan', 'anggaran', [Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
-    //     include: [{model: kwitansi}],
+        // attributes: ['bulan', 'anggaran', [Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
+    //     include: [{model: notas}],
     //     group: ['id_LB']})
     //     .then(data => {
     //     res.send(data)
@@ -161,7 +161,7 @@ controllers.listsemuaProgram = async (req, res) => {
     // const data = await pengeluaran.findAll({
     //     include: [{
     //         model: laporan_bulanan,
-    //         include: [kwitansi]
+    //         include: [notas]
     //     }]})
     //     .then(data => {
     //     res.send(data)
@@ -235,7 +235,7 @@ controllers.listSemuaKegiatan = async (req, res) => {
             include: [{
                 model: pengeluaran,
                 // include: [{
-                //     model: kwitansi
+                //     model: notas
                 // }],
             }]
         }],
@@ -246,9 +246,9 @@ controllers.listSemuaKegiatan = async (req, res) => {
     })
 
     // const data = await laporan_bulanan.findAll({
-    //     attributes: [[Sequelize.fn('sum', Sequelize.col('kwitansis.total')), 'totalnya']],
+    //     attributes: [[Sequelize.fn('sum', Sequelize.col('notas.total')), 'totalnya']],
     //     include: [{
-    //         model: kwitansi
+    //         model: notas
     //     }],
     //     group: ['id_LB']})
     //     .then(data => {

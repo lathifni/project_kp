@@ -3,17 +3,17 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class kwitansi extends Model {
+  class notas extends Model {
     static associate(models) {
-      kwitansi.belongsTo(models.pengeluaran, {
+      notas.belongsTo(models.pengeluaran, {
         foreignKey: 'rek_P5'
       }),
-      kwitansi.belongsTo(models.staff, {
+      notas.belongsTo(models.staff, {
         foreignKey: 'NIP'
       })
     }
   }
-  kwitansi.init({
+  notas.init({
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'kwitansi',
+    modelName: 'notas',
   });
-  return kwitansi;
+  return notas;
 };

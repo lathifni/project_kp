@@ -41,9 +41,11 @@ export const Tambah = () => {
     }
     setValidated(true)
     if (validated === true && idP !== undefined && nama !== '' && total !== '') {
+      const NIP = sessionStorage.getItem('NIP')
       axios.post("http://127.0.0.1:8000/tambah/tambahNota", {
         idP,
         nama,
+        NIP,
         total
       }).then(function (res) {
         console.log(res)
